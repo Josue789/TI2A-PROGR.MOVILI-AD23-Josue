@@ -42,9 +42,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
-    var result by remember{ mutableStateOf(1) }
+    var result1 by remember{ mutableStateOf(1) }
+    var result2 by remember{ mutableStateOf(1) }
 
-    val imageResource = when (result){
+    val imageResource1 = when (result1){
+        1 -> R.drawable.dice_1
+        2 -> R.drawable.dice_2
+        3 -> R.drawable.dice_3
+        4 -> R.drawable.dice_4
+        5 -> R.drawable.dice_5
+        else -> R.drawable.dice_6
+    }
+    val imageResource2 = when (result2){
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
         3 -> R.drawable.dice_3
@@ -56,14 +65,21 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(painter = painterResource(id = imageResource) ,
+        Image(painter = painterResource(id = imageResource1) ,
 
             contentDescription = stringResource(
             R.string.imagen_de_dado
             )
         )
+        Image(painter = painterResource(id = imageResource2),
+            contentDescription = stringResource(R.string.imagen_de_dado)
+        )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { result = (1..6).random() }) {
+        Button(onClick = {
+            result1 = (1..6).random()
+            result2 = (1..6).random()
+        }
+        ) {
             Text(stringResource(R.string.roll))
         }
     }
