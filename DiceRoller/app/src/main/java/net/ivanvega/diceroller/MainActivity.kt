@@ -45,7 +45,8 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
     var result1 by remember{ mutableStateOf(1) }
     var result2 by remember{ mutableStateOf(1) }
 
-    val imageResource1 = when (result1){
+
+    val imageResource2 = when (result2){
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
         3 -> R.drawable.dice_3
@@ -53,7 +54,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
-    val imageResource2 = when (result2){
+    val imageResource1 = when (result1){
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
         3 -> R.drawable.dice_3
@@ -76,15 +77,17 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier){
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            result1 = (1..6).random()
-            result2 = (1..6).random()
+            result1 = getRandomDiceImage()
+            result2 = getRandomDiceImage()
         }
         ) {
             Text(stringResource(R.string.roll))
         }
     }
+}
 
-
+private fun getRandomDiceImage():Int{
+    return (1..6).random()
 }
 
 @Preview
