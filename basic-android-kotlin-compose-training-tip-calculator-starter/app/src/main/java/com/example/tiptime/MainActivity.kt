@@ -165,12 +165,14 @@ fun EditNumberField(
     modifier: Modifier = Modifier) {
     TextField(
         value = value,
-        singleLine = true,
-        leadingIcon = { Icon(painter = painterResource(id = leadingIcon), null ) },
-        onValueChange = onValueChange ,
-        modifier = modifier,
-        label = label,
-        keyboardOptions = keyboardOptions
+        singleLine=true,
+        leadingIcon={
+                    Icon(painter = painterResource(id = leadingIcon),null)
+        },
+        onValueChange = onValueChange,
+        label = { Text(stringResource(label))},
+        keyboardOptions = keyboardOptions,
+        modifier = modifier
     )
 }
 
